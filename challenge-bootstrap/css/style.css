@@ -1,0 +1,50 @@
+.navbar{
+  font-size: 20px;
+  background-color:	#ADD8E6;
+}
+
+.nav-item{
+  padding-left: 30px;
+}
+
+.img-nav{
+  padding-bottom: 100px;
+  margin-left: 3rem;
+  margin-right: 1rem;
+}
+
+.subtitle{
+  padding-bottom: 15px;
+}
+
+.about{
+  background: #F0F8FF;
+}
+
+.margin{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.p-text{
+  padding: 50px;
+  font-style: normal;
+  text-align: justify;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.about-text{
+  width: 70%;
+  height: 70;
+  margin: auto;
+}
+
+.partner{
+  background: #E0FFFF;
+}
+
+.bg-footer{
+  background: gray;
+  color: white;
+  font-style: bold;
+}
