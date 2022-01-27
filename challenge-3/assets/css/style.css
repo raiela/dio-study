@@ -7,11 +7,18 @@ body {
 	font-family: 'Quicksand', sans-serif;
 	height: 100vh;
 	margin: 0;
-	background-color: beige;
+	background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);;
+}
+
+.title{
+	color: #D113BA;
+	font-size: 50px;
 }
 
 img {
-	max-width: 600px;
+
+	margin-bottom: 10px;
+	max-width: 400px;
 	border-radius: 30px;
 }
 
@@ -24,7 +31,7 @@ button {
 	font-size: 1.2rem;
 	font-weight: 500;
 	padding: 16px;
-	background: orangered;
+	background: #2066BB;
 	color: white;
 	margin: 20px 0;
 	cursor: pointer;
@@ -32,5 +39,5 @@ button {
 }
 
 button:hover {
-	background: orange;
+	background: #871DC8;
 }
