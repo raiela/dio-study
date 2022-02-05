@@ -15,10 +15,10 @@ function start() { // Inicio da função start()
         moveBack();
     }
 
-    function movefundo() {
+    function moveBack() {
 	
-        esquerda = parseInt($(".background-game").css("background-position"));
-        $(".background-game").css("background-position",esquerda-1);
+        left = parseInt($(".background-game").css("background-position"));
+        $(".background-game").css("background-position",left-1);
         
     }
 
