@@ -34,6 +34,8 @@ function start() { // Inicio da função start()
         moveBack();
         movePlay();
         moveOponent1();
+        moveOponent2();
+        moveFriend();
     }
 
     function moveBack() {
@@ -78,9 +80,25 @@ function start() { // Inicio da função start()
             }
             $("#oponent1").css("left",694);
             $("#oponent1").css("top",posY);			
+		}        
+    }
+    
+    function moveOponent2(){
+        posX = parseInt($("#oponent2").css("left"));
+	    $("#oponent2").css("left",posX-3);
+				
+		if (posX<=0) {
+		    $("#oponent2").css("left",775);					
 		}
+    }
 
-        
+    function moveFriend(){
+        posX = parseInt($("#friend").css("left"));
+	    $("#friend").css("left",posX+1);
+				
+		if (posX>906) {
+			$("#friend").css("left",0);					
+		}
     }
 
 }
