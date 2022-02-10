@@ -80,3 +80,10 @@ body {
 	padding:10px;
 
 }
+
+#shot {
+	width: 50px;
+	height: 8px;
+	position: absolute;
+	background-image: url(../img/disparo.png);
+}

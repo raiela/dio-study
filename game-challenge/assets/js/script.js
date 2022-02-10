@@ -15,6 +15,7 @@ function start() { // Inicio da função start()
         S: 83,
         D: 68
     }
+    var canShot=true;
 
     game.press = [];
     
@@ -66,6 +67,11 @@ function start() { // Inicio da função start()
             }
         }
 
+        if (game.press[KEYWORDS.D]) {
+            console.log("Clicou")
+            shot();
+        }
+
     }
 
     function moveOponent1(){
@@ -99,6 +105,35 @@ function start() { // Inicio da função start()
 		if (posX>906) {
 			$("#friend").css("left",0);					
 		}
+    }
+
+    function shot(){
+        if(canShot==true){
+            canShot=false;
+            
+            var top = parseInt($("#player").css("top"));
+            posX= parseInt($("#player").css("left"))
+            console.log("oi -",posX)
+            shotX = posX + 198;
+            topShot=top+40;
+            
+            $(".background-game").append("<div id='shot'></div");
+            $("#shot").css("top",topShot);
+            $("#shot").css("left",shotX);
+
+            var timeShot =window.setInterval(execShot, 30);
+            function execShot() {
+                posX = parseInt($("#shot").css("left"));
+                $("#shot").css("left",posX+15); 
+        
+                if (posX>900) {                                
+                    window.clearInterval(timeShot);
+                    timeShot=null;
+                    $("#shot").remove();
+                    canShot=true;                            
+                }
+            }
+        }
     }
 
 }
