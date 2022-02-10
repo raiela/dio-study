@@ -8,6 +8,7 @@ function start() { // Inicio da função start()
 	$(".background-game").append("<div id='friend' class='anima3'></div>");
 
     var velocity=5;
+    var endgame=false;
     var posY = parseInt(Math.random() * 334);
     var game = {}
     var KEYWORDS = {
@@ -37,6 +38,7 @@ function start() { // Inicio da função start()
         moveOponent1();
         moveOponent2();
         moveFriend();
+        tcollision();
     }
 
     function moveBack() {
@@ -68,7 +70,6 @@ function start() { // Inicio da função start()
         }
 
         if (game.press[KEYWORDS.D]) {
-            console.log("Clicou")
             shot();
         }
 
@@ -80,9 +81,9 @@ function start() { // Inicio da função start()
         $("#oponent1").css("top",posY);
 		
 		if (posX<=0) {
-            posY = parseInt(Math.random() * 334);
+            posY = parseInt(Math.random() * 234);
             if(posY <= 110){
-                posY = posY+230;
+                posY = posY+110;
             }
             $("#oponent1").css("left",694);
             $("#oponent1").css("top",posY);			
@@ -113,7 +114,6 @@ function start() { // Inicio da função start()
             
             var top = parseInt($("#player").css("top"));
             posX= parseInt($("#player").css("left"))
-            console.log("oi -",posX)
             shotX = posX + 198;
             topShot=top+40;
             
@@ -133,6 +133,156 @@ function start() { // Inicio da função start()
                     canShot=true;                            
                 }
             }
+        }
+    }
+
+    function tcollision(){
+        var colisao1 = ($("#player").collision($("#oponent1")));
+        var colisao2 = ($("#player").collision($("#oponent2")));
+        var colisao3 = ($("#shot").collision($("#oponent1")));
+        var colisao4 = ($("#shot").collision($("#oponent2")));
+        var colisao5 = ($("#player").collision($("#friend")));
+        var colisao6 = ($("#oponent2").collision($("#friend")));
+
+        if (colisao1.length>0) {
+		
+            oponentX = parseInt($("#oponent1").css("left"));
+            oponentY = parseInt($("#oponent1").css("top"));
+            explosao1(oponentX,oponentY);
+        
+            posicaoY = parseInt(Math.random() * 334);
+            $("#oponent1").css("left",694);
+            $("#oponent1").css("top",posicaoY);
+        }
+
+        if (colisao2.length>0) {	
+            
+            oponent2X = parseInt($("#oponent2").css("left"));
+            oponent2Y = parseInt($("#oponent2").css("top"));
+            explosao2(oponent2X,oponent2Y);                        
+            $("#oponent2").remove();                    
+            newPositionOponent2();                    
+        }
+
+        if (colisao3.length>0) {
+            oponent1X = parseInt($("#oponent1").css("left"));
+            oponent1Y = parseInt($("#oponent1").css("top"));
+                
+            explosao1(oponent1X,oponent1Y);
+            $("#shot").css("left",950);
+                
+            posicaoY = parseInt(Math.random() * 41);
+            $("#oponent1").css("left",694);
+            $("#oponent1").css("top",posicaoY);                
+        }
+
+        if (colisao4.length>0) {
+		
+            oponent2X = parseInt($("#oponent2").css("left"));
+            oponent2Y = parseInt($("#oponent2").css("top"));
+            $("#oponent2").remove();
+        
+            explosao2(oponent2X,oponent2Y);
+            $("#showt").css("left",950);
+            
+            newPositionOponent2();                
+        }
+        
+        if (colisao5.length>0) {		
+            newPosFriend();
+            $("#friend").remove();
+        }
+
+        if (colisao6.length>0) {	    
+            friendX = parseInt($("#friend").css("left"));
+            friendY = parseInt($("#friend").css("top"));
+            explosao3(friendX,friendY);
+            $("#friend").remove();                    
+            newPosFriend();                    
+        }
+
+    }
+
+    function explosao1(oponentX,oponentY) {
+        $(".background-game").append("<div id='boom1'></div");
+        $("#boom1").css("background-image", "url(assets/img/explosao.png)");
+        var div=$("#boom1");
+        div.css("top", oponentY);
+        div.css("left", oponentX);
+        div.animate({width:200, opacity:0}, "slow");
+        
+        var timeBoom=window.setInterval(removeBoom, 1000);
+        
+        function removeBoom() {                
+            div.remove();
+            window.clearInterval(timeBoom);
+            timeBoom=null;
+                
+        }            
+    }
+
+    function explosao2(oponent2X,oponent2Y) {
+	
+        $(".background-game").append("<div id='boom2'></div");
+        $("#boom2").css("background-image", "url(assets/img/explosao.png)");
+        var div2=$("#boom2");
+        div2.css("top", oponent2Y);
+        div2.css("left", oponent2X);
+        div2.animate({width:200, opacity:0}, "slow");
+        
+        var timeBom2=window.setInterval(removeBoom2, 1000);
+        
+        function removeBoom2() {                
+            div2.remove();
+            window.clearInterval(timeBom2);
+            timeBom2=null;                
+        } 
+            
+    }
+
+    function newPositionOponent2() {
+	
+        var timeColision4=window.setInterval(reposition4, 5000);
+            
+        function reposition4() {
+            window.clearInterval(timeColision4);
+            timeColision4=null;
+                    
+            if (endgame==false) {                
+                $(".background-game").append("<div id=oponent2></div");
+                    
+            }
+                
+        }	
+    }	
+
+    function newPosFriend() {
+	
+        var friendTime=window.setInterval(reposition6, 6000);
+        
+        function reposition6() {
+            window.clearInterval(friendTime);
+            friendTime=null;
+            
+            if (endgame==false) {
+                $(".background-game").append("<div id='friend' class='anima3'></div>");
+            }
+            
+        }   
+    }
+
+    function explosao3(){
+        $(".background-game").append("<div id='boom3' class='anima4'></div");
+        $("#boom3").css("top",friendY);
+        $("#boom3").css("left",friendX);
+        
+        var timeBoom3=window.setInterval(resetBoom3, 1000);
+        
+        function resetBoom3() {
+            $("#boom3").remove();
+            window.clearInterval(timeBoom3);
+            timeBoom3=null;
+                    
         }
     }
 
