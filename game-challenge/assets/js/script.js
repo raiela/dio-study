@@ -6,7 +6,11 @@ function start() { // Inicio da função start()
 	$(".background-game").append("<div id='oponent1' class='anima2'></div>");
 	$(".background-game").append("<div id='oponent2' ></div>");
 	$(".background-game").append("<div id='friend' class='anima3'></div>");
+    $(".background-game").append("<div id='score'></div>");
 
+    var points=0;
+    var saves=0;
+    var lost=0;
     var velocity=5;
     var endgame=false;
     var posY = parseInt(Math.random() * 334);
@@ -39,6 +43,7 @@ function start() { // Inicio da função start()
         moveOponent2();
         moveFriend();
         tcollision();
+        score();
     }
 
     function moveBack() {
@@ -165,6 +170,8 @@ function start() { // Inicio da função start()
         }
 
         if (colisao3.length>0) {
+            
+            points = points+100;
             oponent1X = parseInt($("#oponent1").css("left"));
             oponent1Y = parseInt($("#oponent1").css("top"));
                 
@@ -177,7 +184,7 @@ function start() { // Inicio da função start()
         }
 
         if (colisao4.length>0) {
-		
+            points=points+50;
             oponent2X = parseInt($("#oponent2").css("left"));
             oponent2Y = parseInt($("#oponent2").css("top"));
             $("#oponent2").remove();
@@ -188,12 +195,14 @@ function start() { // Inicio da função start()
             newPositionOponent2();                
         }
         
-        if (colisao5.length>0) {		
+        if (colisao5.length>0) {	
+            saves++;	
             newPosFriend();
             $("#friend").remove();
         }
 
-        if (colisao6.length>0) {	    
+        if (colisao6.length>0) {	  
+            lost++;  
             friendX = parseInt($("#friend").css("left"));
             friendY = parseInt($("#friend").css("top"));
             explosao3(friendX,friendY);
@@ -285,5 +294,11 @@ function start() { // Inicio da função start()
                     
         }
     }
+
+    function score() {
+	
+        $("#score").html("<h2> Pontos: " + points + " Salvos: " + saves + " Perdidos: " + lost + "</h2>");
+        
+    } 
 
 }

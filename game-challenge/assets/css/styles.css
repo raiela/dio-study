@@ -118,27 +118,16 @@ body {
          -o-animation: play3 .5s steps(7) infinite;
 }
 
-@keyframes play3 {
-	from {background-position:0px;}
-	to {background-position:-308px;}
+#score {
+	width: 450px;
+	height: 50px;
+	position: absolute;
+	left: 20px;
+	top: 690px;
 }
 
-@-webkit-keyframes play3 {
-   from { background-position:    0px; }
-     to { background-position: -308px; }
-}
-
-@-moz-keyframes play3 {
-   from { background-position:    0px; }
-     to { background-position: -308px; }
-}
-
-@-ms-keyframes play3 {
-   from { background-position:    0px; }
-     to { background-position: -308px; }
-}
-
-@-o-keyframes play3 {
-   from { background-position:    0px; }
-     to { background-position: -308px; }
+h2 {
+	font-family:title;
+	font-size:20px;
+	color:#FFF
 }
