@@ -7,7 +7,9 @@ function start() { // Inicio da função start()
 	$(".background-game").append("<div id='oponent2' ></div>");
 	$(".background-game").append("<div id='friend' class='anima3'></div>");
     $(".background-game").append("<div id='score'></div>");
+    $(".background-game").append("<div id='energy'></div>");
 
+    var currentEnergy = 3;
     var points=0;
     var saves=0;
     var lost=0;
@@ -44,6 +46,7 @@ function start() { // Inicio da função start()
         moveFriend();
         tcollision();
         score();
+        energy();
     }
 
     function moveBack() {
@@ -150,7 +153,7 @@ function start() { // Inicio da função start()
         var colisao6 = ($("#oponent2").collision($("#friend")));
 
         if (colisao1.length>0) {
-		
+            currentEnergy--;
             oponentX = parseInt($("#oponent1").css("left"));
             oponentY = parseInt($("#oponent1").css("top"));
             explosao1(oponentX,oponentY);
@@ -161,7 +164,7 @@ function start() { // Inicio da função start()
         }
 
         if (colisao2.length>0) {	
-            
+            currentEnergy--;
             oponent2X = parseInt($("#oponent2").css("left"));
             oponent2Y = parseInt($("#oponent2").css("top"));
             explosao2(oponent2X,oponent2Y);                        
@@ -170,7 +173,7 @@ function start() { // Inicio da função start()
         }
 
         if (colisao3.length>0) {
-            
+            velocity+=5;            
             points = points+100;
             oponent1X = parseInt($("#oponent1").css("left"));
             oponent1Y = parseInt($("#oponent1").css("top"));
@@ -300,5 +303,51 @@ function start() { // Inicio da função start()
         $("#score").html("<h2> Pontos: " + points + " Salvos: " + saves + " Perdidos: " + lost + "</h2>");
         
     } 
+    
+    function energy() {
+	
+		if (currentEnergy==3) {
+			
+			$("#energy").css("background-image", "url(assets/img/energia3.png)");
+		}
+	
+		if (currentEnergy==2) {
+			
+			$("#energy").css("background-image", "url(assets/img/energia2.png)");
+		}
+	
+		if (currentEnergy==1) {
+			
+			$("#energy").css("background-image", "url(assets/img/energia1.png)");
+		}
+	
+		if (currentEnergy==0) {
+			
+			$("#energy").css("background-image", "url(assets/img/energia0.png)");
+            gameOver();
+			
+		}
+	
+	} 
 
+    function gameOver() {
+        endgame=true;
+        
+        window.clearInterval(game.timer);
+        game.timer=null;
+        
+        $("#player").remove();
+        $("#oponent1").remove();
+        $("#oponent2").remove();
+        $("#friend").remove();
+        
+        $(".background-game").append("<div id='endgame'></div>");
+        
+        $("#endgame").html("<h1> Game Over </h1><p>Sua pontuação foi: " + points + "</p>" + "<div id='restart' onClick=restartGame()><h3>Jogar Novamente</h3></div>");
+    } 
+}
+
+function restarGame(){
+    $("#endgame").remove();
+	start();
 }

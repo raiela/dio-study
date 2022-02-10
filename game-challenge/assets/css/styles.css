@@ -9,6 +9,19 @@ h1 {
 	color:#603A03;
 }
 
+h2 {
+	font-family:title;
+	font-size:20px;
+	color:#FFF
+}
+
+h3 {
+	font-family:title;
+	font-size:20px;
+	color:#603A03;
+
+}
+
 body {
 	background-image: url(../img/teste1.jpg);
 }
@@ -126,8 +139,21 @@ body {
 	top: 690px;
 }
 
-h2 {
-	font-family:title;
-	font-size:20px;
-	color:#FFF
+#energy {
+	width: 140px;
+	height: 38px;
+	position: absolute;
+	left: 790px;
+	top: 115px;	
+}
+
+#endgame {
+	width:350px;
+	height:200px;
+	background-color:#FFF;
+ 	margin-left:auto;
+    	margin-right:auto;
+ 	margin-top:100px;
+	text-align:center;
+	padding:10px;
 }
