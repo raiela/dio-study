@@ -4,3 +4,4 @@ O jogo foi criado usando jquery, que é uma biblioteca de funções JavaScript q
 
 ### Segue imagem de como ficou o visual do jogo. 
 
+![Game Image](https://raw.githubusercontent.com/raiela/dio-study/main/game-challenge/assets/img/game.PNG?raw=true)
