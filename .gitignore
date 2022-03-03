@@ -1,2 +1,3 @@
-ifood-clone\node_modules
-dio-study\node_modules
+\node_modules
+yarn-error.log
+yarn.lock
