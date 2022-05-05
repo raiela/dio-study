@@ -1,3 +1,3 @@
 ## Clone do Site Netflix
 
-Desafio para o curso da Dio.
+Página inicial da neflix feita como HTML5 e CSS3.
